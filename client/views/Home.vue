@@ -1,13 +1,18 @@
 <template>
   <div class="page">
-
+    <nav-bar></nav-bar>
   </div>
 </template>
 
 <script>
-export default {
-  components: {
+  import NavBar from '../components/NavBar';
 
+  export default {
+    components: {
+      NavBar
+    }
   }
-}
 </script>
+<style lang="scss" scoped>
+
+</style>
