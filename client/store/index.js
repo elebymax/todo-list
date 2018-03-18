@@ -4,15 +4,26 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  count: 0
+  todoIndexCount: 1,
+  todos: [
+    {
+      id: 1,
+      date: '2018-03-18',
+      text: '跟朋友吃飯',
+      done: false
+    }
+  ]
+}
+
+const getters = {
+
 }
 
 const mutations = {
-  INCREMENT (state) {
-    state.count++
-  },
-  DECREMENT (state) {
-    state.count--
+  addTodo (state, todo) {
+    todo.id = ++state.todoIndexCount;
+
+    state.todos.push(todo);
   }
 }
 
@@ -27,7 +38,8 @@ const actions = {
 const store = new Vuex.Store({
   state,
   mutations,
-  actions
+  actions,
+  getters
 })
 
 export default store
