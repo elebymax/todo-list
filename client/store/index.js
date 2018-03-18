@@ -41,6 +41,15 @@ const mutations = {
     todo.id = ++state.todoIndexCount;
 
     state.todos.push(todo);
+  },
+  removeTodo (state, id) {
+    for(let i=0; i<state.todos.length; i++) {
+      const item = state.todos[i];
+      if (item.id === id) {
+        state.todos.splice(i, 1);
+        return;
+      }
+    }
   }
 }
 
