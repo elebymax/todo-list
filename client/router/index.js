@@ -12,8 +12,10 @@ export default new Router({
     {
       path: '/',
       component: Home,
+      redirect: { path: '/daily-todos' },
       children: [
         {
+          name: 'daily',
           path: 'daily-todos',
           component: Daily,
           props: {
