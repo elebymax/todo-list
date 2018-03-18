@@ -13,17 +13,25 @@
       <input class="my-edit-box-input-box" v-model="inputContent" type="text" :placeholder="hintText"/>
     </div>
     <div class="my-edit-box-operation-button">
-      <mu-raised-button label="加入" class="demo-raised-button" primary/>
-      <mu-flat-button label="清空" class="demo-flat-button" @click="handleClearClick"/>
+      <mu-raised-button v-if="isEditing" label="修改" class="demo-raised-button" primary/>
+      <mu-flat-button v-if="isEditing" label="取消" class="demo-flat-button"/>
+      <mu-raised-button v-if="!isEditing" label="加入" class="demo-raised-button" primary @click="handleAddClick"/>
+      <mu-flat-button v-if="!isEditing" label="清空" class="demo-flat-button" @click="handleClearClick"/>
     </div>
   </div>
 </template>
 <script>
+  import { mapGetters, mapMutations } from 'vuex';
+
   export default {
     mounted() {
-      this.selectDate = new Date().toISOString().slice(0,10);
+      this.resetDate();
     },
     props: {
+      isEditing: {
+        type: Boolean,
+        default: false
+      },
       hintText: {
         type: String,
         default: ""
@@ -36,8 +44,26 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'addTodo'
+      ]),
+      resetDate() {
+        this.selectDate = new Date().toISOString().slice(0,10);
+      },
       handleDateClick() {
         this.$refs['date-picker'].$el.querySelector(".mu-text-field-content").click();
+      },
+      handleAddClick() {
+        const todo = {
+          date: this.selectDate,
+          text: this.inputContent,
+          done: false
+        };
+
+        this.addTodo(todo);
+
+        this.resetDate();
+        this.inputContent = "";
       },
       handleClearClick() {
         this.inputContent = "";
