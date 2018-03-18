@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
 const state = {
-  todoIndexCount: 2,
+  todoIndexCount: 4,
   editUid: 0,
   todos: [
     {
@@ -18,6 +19,18 @@ const state = {
       date: '2018-03-18',
       text: '跟朋友吃飯2',
       done: false
+    },
+    {
+      id: 3,
+      date: '2018-03-18',
+      text: '去聽音樂會',
+      done: true
+    },
+    {
+      id: 4,
+      date: '2018-03-18',
+      text: '社團活動',
+      done: true
     }
   ]
 }
@@ -71,6 +84,16 @@ const getters = {
   },
   editUid: (state) => {
     return state.editUid;
+  },
+  isDoneDateArr: (state) => (isDone) => {
+    let dateArr = [];
+    const doneArr = _.filter(state.todos, { done: isDone });
+    _.forEach(_.uniqBy(doneArr, 'date'), function(o) { return dateArr.push(o.date) });
+
+    return dateArr;
+  },
+  todoIndexCount: (state) => {
+    return state.todoIndexCount;
   }
 }
 
