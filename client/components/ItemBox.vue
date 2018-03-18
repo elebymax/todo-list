@@ -5,10 +5,27 @@
         <i class="material-icons">check_circle</i>
       </div>
     </div>
+    <div class="my-item-box-content">
+      <span>{{ text }}</span>
+    </div>
+    <div class="my-item-box-operation-button">
+      <i class="material-icons">clear</i>
+    </div>
   </div>
 </template>
 <script>
-
+  export default {
+    props: {
+      isChecked: {
+        type: Boolean,
+        default: false
+      },
+      text: {
+        type: String,
+        default: ""
+      }
+    }
+  }
 </script>
 <style lang="scss">
   .my-item-box {
@@ -32,6 +49,10 @@
           opacity: 1;
         }
 
+        &:active i {
+          color: #cdcdcd;
+        }
+
         i {
           height: 100%;
           width: 100%;
@@ -47,6 +68,36 @@
           -ms-transition: color 0.3s, opacity 0.3s;
           -o-transition: color 0.3s, opacity 0.3s;
           transition: color 0.3s, opacity 0.3s;
+        }
+      }
+    }
+
+    .my-item-box-content {
+      padding: 0 8px;
+      box-sizing: border-box;
+      width: 100%;
+      cursor: text;
+
+      span {
+        font-size: 1.2em;
+      }
+    }
+
+    .my-item-box-operation-button {
+      height: 100%;
+      padding: 0 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+
+      i {
+        color: #d7d7d7;
+        font-size: 2em;
+        cursor: pointer;
+
+        &:hover {
+          color: #cdcdcd;
         }
       }
     }
