@@ -33,6 +33,30 @@ const getters = {
     }
 
     return todos;
+  },
+  doneTodosByDate: (state) => (date) => {
+    let todos = [];
+
+    for(let i=0; i<state.todos.length; i++) {
+      const item = state.todos[i];
+      if (item.date === date && item.done === true) {
+        todos.push(item);
+      }
+    }
+
+    return todos;
+  },
+  undoneTodosByDate: (state) => (date) => {
+    let todos = [];
+
+    for(let i=0; i<state.todos.length; i++) {
+      const item = state.todos[i];
+      if (item.date === date && item.done === false) {
+        todos.push(item);
+      }
+    }
+
+    return todos;
   }
 }
 
@@ -47,6 +71,15 @@ const mutations = {
       const item = state.todos[i];
       if (item.id === id) {
         state.todos.splice(i, 1);
+        return;
+      }
+    }
+  },
+  toggleTodo (state, id) {
+    for(let i=0; i<state.todos.length; i++) {
+      const item = state.todos[i];
+      if (item.id === id) {
+        item.done = !item.done;
         return;
       }
     }

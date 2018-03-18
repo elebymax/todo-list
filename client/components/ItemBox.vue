@@ -2,11 +2,16 @@
   <div class="my-item-box">
     <div class="my-item-box-checker">
       <div class="my-item-box-checker-outline">
-        <i class="material-icons">check_circle</i>
+        <i class="material-icons"
+           :class="{ 'isActive': isChecked }"
+           @click="handleCheckerClicked">check_circle</i>
       </div>
     </div>
     <div class="my-item-box-content">
-      <span>{{ text }}</span>
+      <span :class="{ 'isActive': isChecked }">
+        <div v-if="isChecked" class="my-item-box-done-bar"></div>
+        {{ text }}
+      </span>
     </div>
     <div class="my-item-box-operation-button">
       <i class="material-icons" @click="handleRemoveClicked">clear</i>
@@ -33,8 +38,12 @@
     },
     methods: {
       ...mapMutations([
+        'toggleTodo',
         'removeTodo'
       ]),
+      handleCheckerClicked() {
+        this.toggleTodo(this.id);
+      },
       handleRemoveClicked() {
         this.removeTodo(this.id);
       }
@@ -82,6 +91,11 @@
           -ms-transition: color 0.3s, opacity 0.3s;
           -o-transition: color 0.3s, opacity 0.3s;
           transition: color 0.3s, opacity 0.3s;
+
+          &.isActive {
+            color: #cdcdcd;
+            opacity: 1;
+          }
         }
       }
     }
@@ -93,7 +107,20 @@
       cursor: text;
 
       span {
+        position: relative;
         font-size: 1.2em;
+
+        &.isActive {
+          color: #cdcdcd;
+        }
+
+        .my-item-box-done-bar {
+          width: 100%;
+          height: 2px;
+          background-color: #afafaf;
+          position: absolute;
+          top: calc(50% - 1px);
+        }
       }
     }
 
