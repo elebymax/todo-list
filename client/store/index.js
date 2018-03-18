@@ -10,26 +10,38 @@ const state = {
   todos: [
     {
       id: 1,
-      date: '2018-03-18',
-      text: '跟朋友吃飯',
+      date: '2018-03-16',
+      text: '繞國父紀念館跑10圈',
       done: false
     },
     {
       id: 2,
-      date: '2018-03-18',
-      text: '跟朋友吃飯2',
-      done: false
+      date: '2018-03-16',
+      text: '跟黃小明吃飯',
+      done: true
     },
     {
       id: 3,
-      date: '2018-03-18',
-      text: '去聽音樂會',
+      date: '2018-03-16',
+      text: '開源社社團活動',
       done: true
     },
     {
       id: 4,
       date: '2018-03-18',
-      text: '社團活動',
+      text: '背100個單字',
+      done: false
+    },
+    {
+      id: 5,
+      date: '2018-03-18',
+      text: '忠孝東路走九遍',
+      done: false
+    },
+    {
+      id: 6,
+      date: '2018-03-18',
+      text: '晚上 6:00 去聽音樂會',
       done: true
     }
   ]
