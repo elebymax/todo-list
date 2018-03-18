@@ -110,6 +110,14 @@ const mutations = {
   },
   setEditUid (state, uid) {
     state.editUid = uid;
+  },
+  removeDoneTodoByDate (state, date) {
+    for(let i=state.todos.length-1; i>=0; i--) {
+      const item = state.todos[i];
+      if (item.date === date && item.done === true) {
+        state.todos.splice(i, 1);
+      }
+    }
   }
 }
 

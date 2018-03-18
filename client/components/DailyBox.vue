@@ -1,6 +1,15 @@
 <template>
   <div class="my-daily-box">
-    <h2 @click="handleDateClick"><i class="material-icons">date_range</i>{{ selectDate }}</h2>
+    <div class="my-daily-box-title-bar">
+      <h2 @click="handleDateClick">
+        <i class="material-icons">date_range</i>
+        {{ selectDate }}
+      </h2>
+      <div class="my-item-boxes-wrapper-operation-button" @click="handleRemoveDoneTodo">
+        <i class="material-icons">delete</i>
+        清除已完成項目
+      </div>
+    </div>
     <mu-date-picker ref="daily-date-picker" v-model="selectDate" hintText="選擇時間" style="display: none;"/>
     <div class="my-daily-box-content">
       <item-boxes-wrapper title="未完成">
@@ -70,8 +79,14 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'removeDoneTodoByDate'
+      ]),
       handleDateClick() {
         this.$refs['daily-date-picker'].$el.querySelector(".mu-text-field-content").click();
+      },
+      handleRemoveDoneTodo() {
+        this.removeDoneTodoByDate(this.selectDate);
       }
     },
     components: {
@@ -87,29 +102,64 @@
   .my-daily-box {
     padding: 8px;
 
-    h2 {
+    .my-daily-box-title-bar {
+      position: relative;
       border-bottom: 2px solid #eee;
-      padding: 8px 0;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-      -o-transition: all 0.3s;
-      transition: all 0.3s;
 
-      &:hover {
-        background-color: #eee;
-      }
-
-      i {
-        padding: 0 16px 0 8px;
+      h2 {
+        margin: 0;
+        padding: 8px 16px;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
         -webkit-transition: all 0.3s;
         -moz-transition: all 0.3s;
         -ms-transition: all 0.3s;
         -o-transition: all 0.3s;
         transition: all 0.3s;
+        position: relative;
+
+        &:hover {
+          background-color: #eee;
+        }
+
+        i {
+          padding-right: 16px;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          -o-transition: all 0.3s;
+          transition: all 0.3s;
+        }
+      }
+
+      .my-item-boxes-wrapper-operation-button {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        right: 0;
+        top: 0;
+        padding: 0 8px;
+        cursor: pointer;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: #eee;
+        }
+
+        i {
+          padding-right: 8px;
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          -o-transition: all 0.3s;
+          transition: all 0.3s;
+        }
       }
     }
 
