@@ -77,6 +77,7 @@
     box-sizing: border-box;
     border: 1px solid #eee;
     border-radius: 3px;
+    margin-top: 16px;
 
     .my-edit-box-date-picker {
       border-right: 1px solid #eee;
