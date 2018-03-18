@@ -39,8 +39,7 @@
       ...mapGetters([
         'doneTodosByDate',
         'undoneTodosByDate',
-        'todoById',
-        'elementStorage'
+        'todoById'
       ])
     },
     props: {

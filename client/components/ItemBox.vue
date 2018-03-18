@@ -63,7 +63,7 @@
     box-sizing: border-box;
     height: 48px;
     border-bottom: 1px solid #eee;
-    margin-bottom: 8px;
+    margin: 8px 0 ;
     align-items: center;
 
     .my-item-box-checker {
