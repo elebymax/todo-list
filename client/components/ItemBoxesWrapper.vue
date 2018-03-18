@@ -19,12 +19,5 @@
 <style lang="scss">
   .my-item-boxes-wrapper {
     margin-top: 24px;
-    padding-left: 18px;
-    box-sizing: border-box;
-
-    .my-item-boxes-wrapper-content {
-      padding-left: 18px;
-      box-sizing: border-box;
-    }
   }
 </style>
