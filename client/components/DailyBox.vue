@@ -84,7 +84,7 @@
     padding: 8px;
 
     h2 {
-      border-bottom: 1px solid #eee;
+      border-bottom: 2px solid #eee;
       padding-bottom: 8px;
     }
 
