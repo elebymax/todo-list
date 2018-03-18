@@ -1,7 +1,8 @@
 <template>
   <mu-appbar :title="title">
-    <mu-text-field icon="search" class="navbar-search-field" slot="right" hintText="請輸入搜尋內容"/>
-    <mu-flat-button color="white" label="flat Button" slot="right"/>
+    <mu-flat-button color="white" label="已完成項目" slot="right" @click="handleShowDoneTodosClicked"/>
+    <mu-flat-button color="white" label="未完成項目" slot="right" @click="handleShowUndoneTodosClicked"/>
+    <mu-flat-button color="white" label="單日項目" slot="right" @click="handleShowDailyTodosClicked"/>
   </mu-appbar>
 </template>
 <script>
@@ -10,6 +11,17 @@
       title: {
         type: String,
         default: ""
+      }
+    },
+    methods: {
+      handleShowDoneTodosClicked() {
+        this.$emit("showDoneTodos");
+      },
+      handleShowUndoneTodosClicked() {
+        this.$emit("showUndoneTodos");
+      },
+      handleShowDailyTodosClicked() {
+        this.$emit("showDailyTodos");
       }
     }
   }
