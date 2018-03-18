@@ -1,9 +1,10 @@
 <template>
   <div class="my-daily-box">
-    <h2>{{ title }}</h2>
+    <h2 @click="handleDateClick"><i class="material-icons">date_range</i>{{ selectDate }}</h2>
+    <mu-date-picker ref="daily-date-picker" v-model="selectDate" hintText="選擇時間" style="display: none;"/>
     <div class="my-daily-box-content">
       <item-boxes-wrapper title="未完成">
-        <display-box v-for="(item, index) in undoneTodosByDate(date)"
+        <display-box v-for="(item, index) in undoneTodosByDate(selectDate)"
                      :key="item.key"
                      :id="item.id"
                      :date="item.date"
@@ -15,7 +16,7 @@
       <display-add-box></display-add-box>
 
       <item-boxes-wrapper title="已完成">
-        <display-box v-for="(item, index) in doneTodosByDate(date)"
+        <display-box v-for="(item, index) in doneTodosByDate(selectDate)"
                      :key="item.key"
                      :id="item.id"
                      :date="item.date"
@@ -35,6 +36,9 @@
   import DisplayAddBox from '../components/DisplayAddBox';
 
   export default {
+    mounted() {
+      this.selectDate = this.date;
+    },
     computed: {
       ...mapGetters([
         'doneTodosByDate',
@@ -61,13 +65,14 @@
           date: "",
           text: "",
           done: false
-        }
+        },
+        selectDate: ""
       }
     },
     methods: {
-      ...mapMutations([
-        'storeElement'
-      ])
+      handleDateClick() {
+        this.$refs['daily-date-picker'].$el.querySelector(".mu-text-field-content").click();
+      }
     },
     components: {
       EditBox,
@@ -85,6 +90,13 @@
     h2 {
       border-bottom: 2px solid #eee;
       padding-bottom: 8px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      i {
+        padding: 0 16px 0 8px;
+      }
     }
 
     .my-daily-box-content {
