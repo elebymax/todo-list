@@ -18,7 +18,8 @@ const state = {
       text: '跟朋友吃飯2',
       done: false
     }
-  ]
+  ],
+  elementStorage: null
 }
 
 const getters = {
@@ -57,6 +58,19 @@ const getters = {
     }
 
     return todos;
+  },
+  todoById: (state) => (id) => {
+    let todos = [];
+
+    for(let i=0; i<state.todos.length; i++) {
+      const item = state.todos[i];
+      if (item.id === id) {
+        return item;
+      }
+    }
+  },
+  elementStorage: (state) => {
+    return state.elementStorage;
   }
 }
 
@@ -83,6 +97,19 @@ const mutations = {
         return;
       }
     }
+  },
+  updateTodo (state, todo) {
+    for(let i=0; i<state.todos.length; i++) {
+      const item = state.todos[i];
+      if (item.id === todo.id) {
+        item.date = todo.date;
+        item.text = todo.text;
+        return;
+      }
+    }
+  },
+  storeElement (state, element) {
+    state.elementStorage = element;
   }
 }
 

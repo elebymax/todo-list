@@ -7,7 +7,7 @@
            @click="handleCheckerClicked">check_circle</i>
       </div>
     </div>
-    <div class="my-item-box-content">
+    <div class="my-item-box-content" @click="handleTextClicked">
       <span :class="{ 'isActive': isChecked }">
         <div v-if="isChecked" class="my-item-box-done-bar"></div>
         {{ text }}
@@ -41,6 +41,13 @@
         'toggleTodo',
         'removeTodo'
       ]),
+      handleTextClicked(e) {
+        const data = {
+          e: e,
+          id: this.id
+        };
+        this.$emit('textClicked', data);
+      },
       handleCheckerClicked() {
         this.toggleTodo(this.id);
       },

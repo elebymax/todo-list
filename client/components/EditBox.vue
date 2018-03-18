@@ -13,10 +13,10 @@
       <input class="my-edit-box-input-box" v-model="inputContent" type="text" :placeholder="hintText"/>
     </div>
     <div class="my-edit-box-operation-button">
-      <mu-raised-button v-if="isEditing" label="修改" class="demo-raised-button" primary/>
-      <mu-flat-button v-if="isEditing" label="取消" class="demo-flat-button"/>
-      <mu-raised-button v-if="!isEditing" label="加入" class="demo-raised-button" primary @click="handleAddClick"/>
-      <mu-flat-button v-if="!isEditing" label="清空" class="demo-flat-button" @click="handleClearClick"/>
+      <mu-raised-button v-if="isModifying" label="修改" class="demo-raised-button" primary @click="handleUpdateClick"/>
+      <mu-flat-button v-if="isModifying" label="取消" class="demo-flat-button" @click="handleCancelClick"/>
+      <mu-raised-button v-if="!isModifying" label="加入" class="demo-raised-button" primary @click="handleAddClick"/>
+      <mu-flat-button v-if="!isModifying" label="清空" class="demo-flat-button" @click="handleClearClick"/>
     </div>
   </div>
 </template>
@@ -24,13 +24,38 @@
   import { mapGetters, mapMutations } from 'vuex';
 
   export default {
+    watch: {
+      isModifying(value) {
+        if(value) {
+          this.selectDate = this.date;
+          this.inputContent = this.text;
+        }
+      }
+    },
     mounted() {
       this.resetDate();
+
+      if(this.isModifying) {
+        this.selectDate = this.date;
+        this.inputContent = this.text;
+      }
     },
     props: {
-      isEditing: {
+      isModifying: {
         type: Boolean,
         default: false
+      },
+      id: {
+        type: Number,
+        default: 0
+      },
+      date: {
+        type: String,
+        default: ""
+      },
+      text: {
+        type: String,
+        default: ""
       },
       hintText: {
         type: String,
@@ -45,7 +70,8 @@
     },
     methods: {
       ...mapMutations([
-        'addTodo'
+        'addTodo',
+        'updateTodo'
       ]),
       resetDate() {
         this.selectDate = new Date().toISOString().slice(0,10);
@@ -67,6 +93,19 @@
       },
       handleClearClick() {
         this.inputContent = "";
+      },
+      handleUpdateClick() {
+        const todo = {
+          id: this.id,
+          date: this.selectDate,
+          text: this.inputContent,
+        };
+
+        this.updateTodo(todo);
+        this.$emit("completeModifying");
+      },
+      handleCancelClick() {
+        this.$emit("cancelModifying");
       }
     }
   }
