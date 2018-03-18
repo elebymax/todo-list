@@ -5,14 +5,14 @@
         <i class="material-icons">date_range</i>
         {{ selectDate }}
       </h2>
-      <div class="my-item-boxes-wrapper-operation-button" @click="handleRemoveDoneTodo">
+      <div class="my-item-boxes-wrapper-operation-button" @click="handleRemoveDoneTodo" v-if="mode !== 'undone-mode'">
         <i class="material-icons">delete</i>
         清除已完成項目
       </div>
     </div>
     <mu-date-picker ref="daily-date-picker" v-model="selectDate" hintText="選擇時間" style="display: none;"/>
     <div class="my-daily-box-content">
-      <item-boxes-wrapper title="未完成">
+      <item-boxes-wrapper title="未完成" v-if="mode !== 'done-mode'">
         <display-box v-for="(item, index) in undoneTodosByDate(selectDate)"
                      :key="item.key"
                      :id="item.id"
@@ -22,9 +22,9 @@
         </display-box>
       </item-boxes-wrapper>
 
-      <display-add-box></display-add-box>
+      <display-add-box v-if="mode !== 'done-mode'"></display-add-box>
 
-      <item-boxes-wrapper title="已完成">
+      <item-boxes-wrapper title="已完成" v-if="mode !== 'undone-mode'">
         <display-box v-for="(item, index) in doneTodosByDate(selectDate)"
                      :key="item.key"
                      :id="item.id"
@@ -63,6 +63,10 @@
       date: {
         type: String,
         default: ""
+      },
+      mode: {
+        type: String,
+        default: "daily"
       }
     },
     data() {
@@ -83,6 +87,10 @@
         'removeDoneTodoByDate'
       ]),
       handleDateClick() {
+        if (this.mode !== 'daily-mode') {
+          return;
+        }
+
         this.$refs['daily-date-picker'].$el.querySelector(".mu-text-field-content").click();
       },
       handleRemoveDoneTodo() {
