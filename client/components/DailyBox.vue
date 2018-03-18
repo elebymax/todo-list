@@ -4,6 +4,7 @@
     <div class="my-daily-box-content">
       <item-box v-for="(item, index) in todosByDate(date)"
                 :key="item.id"
+                :id="item.id"
                 :text="item.text"></item-box>
       <edit-box hintText="請輸入事項"></edit-box>
     </div>
@@ -32,7 +33,7 @@
     },
     data() {
       return {
-        
+
       }
     },
     components: {

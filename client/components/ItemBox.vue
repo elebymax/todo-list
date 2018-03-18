@@ -9,20 +9,34 @@
       <span>{{ text }}</span>
     </div>
     <div class="my-item-box-operation-button">
-      <i class="material-icons">clear</i>
+      <i class="material-icons" @click="handleRemoveClicked">clear</i>
     </div>
   </div>
 </template>
 <script>
+  import { mapGetters, mapMutations } from 'vuex';
+
   export default {
     props: {
       isChecked: {
         type: Boolean,
         default: false
       },
+      id: {
+        type: Number,
+        default: 0
+      },
       text: {
         type: String,
         default: ""
+      }
+    },
+    methods: {
+      ...mapMutations([
+        'removeTodo'
+      ]),
+      handleRemoveClicked() {
+        this.removeTodo(this.id);
       }
     }
   }
