@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 const state = {
   todoIndexCount: 2,
+  editUid: 0,
   todos: [
     {
       id: 1,
@@ -18,8 +19,7 @@ const state = {
       text: '跟朋友吃飯2',
       done: false
     }
-  ],
-  elementStorage: null
+  ]
 }
 
 const getters = {
@@ -69,8 +69,8 @@ const getters = {
       }
     }
   },
-  elementStorage: (state) => {
-    return state.elementStorage;
+  editUid: (state) => {
+    return state.editUid;
   }
 }
 
@@ -108,8 +108,8 @@ const mutations = {
       }
     }
   },
-  storeElement (state, element) {
-    state.elementStorage = element;
+  setEditUid (state, uid) {
+    state.editUid = uid;
   }
 }
 

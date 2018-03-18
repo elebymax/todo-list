@@ -17,10 +17,23 @@
   </div>
 </template>
 <script>
+  import { mapGetters, mapMutations } from 'vuex';
   import EditBox from '../components/EditBox';
   import ItemBox from '../components/ItemBox';
 
   export default {
+    watch: {
+      editUid(value) {
+        if (this.isModifying && this._uid !== value) {
+          this.isModifying = false;
+        }
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'editUid'
+      ])
+    },
     props: {
       id: {
         type: Number,
@@ -45,8 +58,12 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'setEditUid'
+      ]),
       handleItemTextClicked() {
         this.isModifying = true;
+        this.setEditUid(this._uid);
       },
       handleEditBoxComplete() {
         this.isModifying = false;

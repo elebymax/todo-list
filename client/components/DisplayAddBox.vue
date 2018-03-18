@@ -13,17 +13,34 @@
   </div>
 </template>
 <script>
+  import { mapGetters, mapMutations } from 'vuex';
   import EditBox from '../components/EditBox';
 
   export default {
+    watch: {
+      editUid(value) {
+        if (this.isModifying && this._uid !== value) {
+          this.isModifying = false;
+        }
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'editUid'
+      ])
+    },
     data() {
       return {
         isModifying: false,
       }
     },
     methods: {
+      ...mapMutations([
+        'setEditUid'
+      ]),
       handleAddingLabelClicked() {
         this.isModifying = true;
+        this.setEditUid(this._uid);
       },
       handleEditBoxComplete() {
         this.isModifying = false;
@@ -44,9 +61,15 @@
       color: #afafaf;
       align-items: center;
       font-size: 1.2em;
+      margin-top: 16px;
+      cursor: pointer;
 
       &.isActive {
         display: flex;
+      }
+
+      &:hover {
+        color: gray;
       }
 
       i {
