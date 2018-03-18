@@ -1,25 +1,33 @@
 <template>
   <div class="page">
-    <nav-bar title="Eleby's Todos"></nav-bar>
-    <div id="container">
-      <daily-box title="Day1" date="2018-03-18"></daily-box>
-    </div>
+    <nav-bar title="Eleby's Todos"
+             @showDoneTodos="handleShowDoneTodos"
+             @showUndoneTodos="handleShowUndoneTodos"
+             @showDailyTodos="handleShowDailyTodos"></nav-bar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
   import NavBar from '../components/NavBar';
-  import DailyBox from '../components/DailyBox';
 
   export default {
+    methods: {
+      handleShowDoneTodos() {
+        this.$router.replace("/done-todos");
+      },
+      handleShowUndoneTodos() {
+        this.$router.replace("/undone-todos");
+      },
+      handleShowDailyTodos() {
+        this.$router.replace("/daily-todos");
+      }
+    },
     components: {
-      NavBar,
-      DailyBox
+      NavBar
     }
   }
 </script>
 <style lang="scss" scoped>
-  #container {
-    padding: 12px 36px;
-  }
+
 </style>
