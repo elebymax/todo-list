@@ -90,6 +90,7 @@
 
         this.resetDate();
         this.inputContent = "";
+        this.$emit("completeAdding");
       },
       handleClearClick() {
         this.inputContent = "";
