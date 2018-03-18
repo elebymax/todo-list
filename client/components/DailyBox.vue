@@ -89,13 +89,27 @@
 
     h2 {
       border-bottom: 2px solid #eee;
-      padding-bottom: 8px;
+      padding: 8px 0;
       display: flex;
       align-items: center;
       cursor: pointer;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: #eee;
+      }
 
       i {
         padding: 0 16px 0 8px;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
       }
     }
 
@@ -103,13 +117,6 @@
 
       .my-daily-box-item-box-wrapper {
         margin-top: 24px;
-      }
-
-      .edit-box {
-
-        &.isActive {
-          display: flex;
-        }
       }
     }
   }
