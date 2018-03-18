@@ -3,8 +3,8 @@
     <div v-if="!isModifying"
          class="my-daily-box-adding-label"
          @click="handleAddingLabelClicked">
-      <i class="material-icons">add</i>
-      <div>新增項目</div>
+      <i class="material-icons" style="padding: 0 8px">add</i>
+      <div style="padding-left: 8px">新增項目</div>
     </div>
     <edit-box v-if="isModifying"
               :isModifying="false"
@@ -70,6 +70,10 @@
 
       &:hover {
         color: gray;
+
+        i {
+          color: gray;
+        }
       }
 
       i {
