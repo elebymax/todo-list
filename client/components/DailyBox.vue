@@ -7,7 +7,7 @@
       </h2>
       <div class="my-item-boxes-wrapper-operation-button" @click="handleRemoveDoneTodo" v-if="mode !== 'undone-mode'">
         <i class="material-icons">delete</i>
-        <div v-if="windowWidth >= 768">清除已完成項目</div>
+        <div v-if="!isSmallDevice" style="margin-left: 8px;">清除已完成項目</div>
       </div>
     </div>
     <mu-date-picker ref="daily-date-picker" v-model="selectDate" hintText="選擇時間" style="display: none;"/>
@@ -50,9 +50,10 @@
       this.selectDate = this.date;
 
       let vue = this;
+      vue.windowWidth = window.innerWidth;
       this.$nextTick(function() {
         window.addEventListener('resize', function(e) {
-          vue.windowWidth = window.innerWidth
+          vue.windowWidth = window.innerWidth;
         });
       })
     },
@@ -61,7 +62,10 @@
         'doneTodosByDate',
         'undoneTodosByDate',
         'todoById'
-      ])
+      ]),
+      isSmallDevice() {
+        return this.windowWidth < 768
+      }
     },
     props: {
       title: {

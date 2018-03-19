@@ -19,9 +19,10 @@
   export default {
     mounted() {
       let vue = this;
+      vue.windowWidth = window.innerWidth;
       this.$nextTick(function() {
         window.addEventListener('resize', function(e) {
-          vue.windowWidth = window.innerWidth
+          vue.windowWidth = window.innerWidth;
         });
       })
     },
