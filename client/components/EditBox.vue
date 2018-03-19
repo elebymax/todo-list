@@ -119,17 +119,30 @@
     border-radius: 3px;
     margin: 8px 0;
 
+    @media (max-width: 768px) {
+      display: block;
+      padding: 8px;
+    }
+
     .my-edit-box-date-picker {
       border-right: 1px solid #eee;
       flex: 2;
       display: flex;
       justify-content: center;
       cursor: pointer;
+      min-width: 120px;
       -webkit-transition: background-color 0.3s;
       -moz-transition: background-color 0.3s;
       -ms-transition: background-color 0.3s;
       -o-transition: background-color 0.3s;
       transition: background-color 0.3s;
+
+      @media (max-width: 768px) {
+        display: inline-block;
+        border: none;
+        padding: 8px;
+        box-sizing: border-box;
+      }
 
       &:hover {
         background-color: #eee;
@@ -178,6 +191,12 @@
       box-sizing: border-box;
       padding: 0 2px;
       flex: 2;
+
+      @media (max-width: 768px) {
+        display: block;
+        border: none;
+        text-align: right;
+      }
     }
   }
 </style>
