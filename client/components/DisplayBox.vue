@@ -27,6 +27,9 @@
         if (this.isModifying && this._uid !== value) {
           this.isModifying = false;
         }
+      },
+      date(value) {
+        this.date = value;
       }
     },
     computed: {

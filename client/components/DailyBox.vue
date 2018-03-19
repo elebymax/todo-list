@@ -46,6 +46,11 @@
   import DisplayAddBox from '../components/DisplayAddBox';
 
   export default {
+    watch: {
+      date(value) {
+        this.selectDate = value;
+      }
+    },
     mounted() {
       this.selectDate = this.date;
 
