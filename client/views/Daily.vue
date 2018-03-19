@@ -27,5 +27,9 @@
 <style lang="scss">
   .container {
     padding: 12px 36px;
+
+    @media (max-width: 768px) {
+      padding: 12px;
+    }
   }
 </style>
