@@ -5,7 +5,7 @@ import _ from 'lodash'
 Vue.use(Vuex)
 
 const state = {
-  todoIndexCount: 4,
+  todoIndexCount: 6,
   editUid: 0,
   todos: [
     {
