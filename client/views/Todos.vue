@@ -13,11 +13,11 @@
   export default {
     watch: {
       todoIndexCount () {
-        console.log("value change");
         this.reloadPage();
       },
       '$route' () {
         this.reloadPage();
+        this.setEditUid();
       }
     },
     mounted() {
@@ -44,6 +44,9 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'setEditUid'
+      ]),
       reloadPage() {
         if (this.mode === 'done-mode') {
           this.dateArr = this.isDoneDateArr(true);
