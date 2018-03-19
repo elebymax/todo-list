@@ -127,6 +127,7 @@
           background-color: #afafaf;
           position: absolute;
           top: calc(50% - 1px);
+          left: 0;
         }
       }
     }
