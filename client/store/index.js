@@ -100,9 +100,12 @@ const getters = {
   isDoneDateArr: (state) => (isDone) => {
     let dateArr = [];
     const doneArr = _.filter(state.todos, { done: isDone });
-    _.forEach(_.uniqBy(doneArr, 'date'), function(o) { return dateArr.push(o.date) });
+    const uniqArr = _.uniqBy(doneArr, 'date');
+    const sortedArr = _.sortBy(uniqArr, function(o) { return o.date; });
 
-    return dateArr;
+    _.forEach(sortedArr, function(o) { return dateArr.push(o.date) });
+
+    return dateArr.reverse();
   },
   todoIndexCount: (state) => {
     return state.todoIndexCount;
