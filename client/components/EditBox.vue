@@ -33,7 +33,7 @@
       }
     },
     mounted() {
-      this.resetDate();
+      this.selectDate = this.date;
 
       if(this.isModifying) {
         this.selectDate = this.date;
@@ -74,7 +74,7 @@
         'updateTodo'
       ]),
       resetDate() {
-        this.selectDate = new Date().toISOString().slice(0,10);
+//        this.selectDate = new Date().toISOString().slice(0,10);
       },
       handleDateClick() {
         this.$refs['date-picker'].$el.querySelector(".mu-text-field-content").click();

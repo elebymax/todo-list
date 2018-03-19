@@ -22,7 +22,8 @@
         </display-box>
       </item-boxes-wrapper>
 
-      <display-add-box v-if="mode !== 'done-mode'"></display-add-box>
+      <display-add-box v-if="mode !== 'done-mode'"
+                       :date="selectDate"></display-add-box>
 
       <item-boxes-wrapper title="已完成" v-if="mode !== 'undone-mode'">
         <display-box v-for="(item, index) in doneTodosByDate(selectDate)"

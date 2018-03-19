@@ -8,6 +8,7 @@
     </div>
     <edit-box v-if="isModifying"
               :isModifying="false"
+              :date="date"
               hintText="請輸入事項"
               @completeAdding="handleEditBoxComplete"></edit-box>
   </div>
@@ -22,6 +23,12 @@
         if (this.isModifying && this._uid !== value) {
           this.isModifying = false;
         }
+      }
+    },
+    props: {
+      date: {
+        type: String,
+        default: ""
       }
     },
     computed: {
